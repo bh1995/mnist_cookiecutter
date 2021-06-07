@@ -1,7 +1,7 @@
 project_name
 ==============================
 
-A short description of the project.
+This project is an organized repo for an mnist classifier using cookiecutter code organization.
 
 Project Organization
 ------------
