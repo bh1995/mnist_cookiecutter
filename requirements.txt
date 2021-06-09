@@ -7,4 +7,8 @@ Sphinx
 coverage
 awscli
 flake8
+sys
+pytest
+torchvision
+torch
 python-dotenv>=0.5.1

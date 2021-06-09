@@ -4,6 +4,4 @@
 # external requirements
 black
 isort
-pytest
-torch
-torchvision
+

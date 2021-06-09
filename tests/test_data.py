@@ -16,7 +16,7 @@ import sys
 sys.path.append("C:/Users/bjorn/OneDrive/Dokument/University/DTU/Machine Learning Operations 21/mnist_cookiecutter")  # need to add path
 from src.data.data1 import *
 
-def test_data_shape():
+def test_data():
     # load data
     # from src.data.data1 import *
     
