@@ -9,13 +9,8 @@ Test script for all tests used in project
 
 # test dataset
 
+import pytest
 import sys
-
-import torch
-import torch.nn as nn
-import torch.nn.functional as F
-import torch.optim as optim
-import torchvision
 
 # C:\Users\bjorn\OneDrive\Dokument\University\DTU\Machine Learning Operations 21\mnist_cookiecutter
 sys.path.append("C:/Users/bjorn/OneDrive/Dokument/University/DTU/Machine Learning Operations 21/mnist_cookiecutter")  # need to add path
@@ -33,7 +28,5 @@ def test_data_shape():
     # print(data.shape, target.shape)
     assert data.shape[0] == target.shape[0]
     assert data.shape[2] and data.shape[3] == 28
-
-
 
 
