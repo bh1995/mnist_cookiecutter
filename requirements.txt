@@ -7,7 +7,7 @@ Sphinx
 coverage
 awscli
 flake8
-sys
+# sys
 pytest
 torchvision
 torch
