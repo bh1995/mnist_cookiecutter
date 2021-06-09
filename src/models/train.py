@@ -13,6 +13,7 @@ import torch
 import torch.nn.functional as F
 import torch.optim as optim
 from tqdm import tqdm
+import wandb
 
 # from data1 import *
 # train_loader, test_loader = load_mnist() # this will download mnist data
@@ -24,7 +25,14 @@ from tqdm import tqdm
 # optimizer = optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
 
 
-def train_function(model, train_loader, optimizer, n_epochs=10):
+def train_function(model, train_loader, optimizer, config=None, n_epochs=10, logger=False):
+    if logger:
+        if config!=None:
+             wandb.init(config)
+             wandb.watch(model)
+        else:     
+            wandb.init()
+            wandb.watch(model)
     # optimizer = optim.SGD(model.parameters(), lr=0.0001, momentum=0.9)
     train_losses = []
     model.train()
@@ -39,6 +47,9 @@ def train_function(model, train_loader, optimizer, n_epochs=10):
             optimizer.step()
             epoch_loss.append(loss.item())
         train_losses.append(np.mean(epoch_loss))
+        if logger:
+            loss_log = float(np.mean(epoch_loss))
+            wandb.log({"loss": loss_log})
         if epoch % 5 == 0:
             # print('Epoch:', epoch, ', Loss:', train_losses[-1])
             print(f"Epoch {epoch}: train loss {train_losses[-1]}")
@@ -50,5 +61,7 @@ def train_function(model, train_loader, optimizer, n_epochs=10):
             #   (batch_idx*64) + ((epoch-1)*len(train_loader.dataset)))
             # torch.save(model.state_dict(), '/results/model.pth')
             # torch.save(optimizer.state_dict(), '/results/optimizer.pth')
+            
+		
     # model.load_state_dict(best_model_wts)
     return model.eval(), train_losses
